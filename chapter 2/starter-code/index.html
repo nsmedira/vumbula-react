@@ -32,7 +32,15 @@
   // 'name' attribute is accessed using this.props.name instead of props.name
   class Greeting extends React.Component {
     render(){
-      return <h1>Hello {this.props.name}</h1>
+      return (
+
+        // initially tried to just return the h1 and p elements on separate lines, but a component can have only one parent element (div tag here)
+        <div>
+          <h1>Hello {this.props.name}</h1>
+          <p>You are {this.props.age} years old.</p>
+          <p>You are {this.props.gender}, whatever that means these days.</p>
+        </div>
+      )
     }
   }
 
@@ -40,7 +48,7 @@
 
     // ADD PROPS TO THE GREETING
     // <Greeting />,
-    <Greeting name={'Nick'} />,
+    <Greeting name={'Nick'} age={28} gender={'male'} />,
 
     document.getElementById('root')
   )
