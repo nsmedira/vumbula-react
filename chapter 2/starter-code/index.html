@@ -18,14 +18,21 @@
   // const Greeting = () => <h1>Hellow World today!</h1>
 
   // CLASS COMPONENT
-  class Greeting extends React.Component {
-    render(){
-      return <h1>Hellow World Today!</h1>
-    }
-  }
+  // class Greeting extends React.Component {
+  //   render(){
+  //     return <h1>Hellow World Today!</h1>
+  //   }
+  // }
+
+  // FUNCTIONAL COMPONENT W/ PROPS
+  const Greeting = props => <h1>Hello {props.name}</h1>
 
   ReactDOM.render(
-    <Greeting />,
+
+    // ADD PROPS TO THE GREETING
+    // <Greeting />,
+    <Greeting name={'Nick'} />,
+
     document.getElementById('root')
   )
 
