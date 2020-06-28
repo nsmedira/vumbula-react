@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Get Started with Vumbula React</title>
+</head>
+
+<body>
+<div id="root">
+    Loading...
+</div>
+<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+<script src="https://unpkg.com/react/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+<script type="text/babel">
+
+  // FUNCTIONAL COMPONENT
+  // const Greeting = () => <h1>Hellow World today!</h1>
+
+  // CLASS COMPONENT
+  // class Greeting extends React.Component {
+  //   render(){
+  //     return <h1>Hellow World Today!</h1>
+  //   }
+  // }
+
+  // FUNCTIONAL COMPONENT W/ PROPS
+  // const Greeting = props => <h1>Hello {props.name}</h1>
+
+  // CLASS COMPONENT W/ PROPOS
+  // 'props' is not passed as an argument to the class
+  // 'name' attribute is accessed using this.props.name instead of props.name
+  class Greeting extends React.Component {
+    render(){
+      return (
+
+        // initially tried to just return the h1 and p elements on separate lines, but a component can have only one parent element (div tag here)
+        <div>
+          <h1>Hello {this.props.name}</h1>
+          <p>You are {this.props.age} years old.</p>
+          <p>You are {this.props.gender}, whatever that means these days.</p>
+        </div>
+      )
+    }
+  }
+
+  // Avatar component
+  const Avatar = () => <img src="http://i.pravatar.cc/300" alt="300" />
+
+  // Username Component
+  const UserName = () => <h4>nsmedira</h4>
+
+    // Bio component
+    const Bio = () =>
+        <p>
+            <strong>Bio: </strong>
+            Badass programmer.
+        </p>
+
+    // UserProfile component
+    const UserProfile = () =>
+        <div>
+            <Avatar />
+            <UserName />
+            <Bio />
+        </div>
+  ReactDOM.render(
+
+    // ADD PROPS TO THE GREETING
+    // <Greeting />,
+    <div>
+        <Greeting name={'Nick'} age={28} gender={'male'} />
+        <UserProfile/>
+    </div>,
+
+    document.getElementById('root')
+  )
+
+</script>
+</body>
+</html>
