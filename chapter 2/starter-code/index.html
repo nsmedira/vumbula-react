@@ -25,7 +25,16 @@
   // }
 
   // FUNCTIONAL COMPONENT W/ PROPS
-  const Greeting = props => <h1>Hello {props.name}</h1>
+  // const Greeting = props => <h1>Hello {props.name}</h1>
+
+  // CLASS COMPONENT W/ PROPOS
+  // 'props' is not passed as an argument to the class
+  // 'name' attribute is accessed using this.props.name instead of props.name
+  class Greeting extends React.Component {
+    render(){
+      return <h1>Hello {this.props.name}</h1>
+    }
+  }
 
   ReactDOM.render(
 
