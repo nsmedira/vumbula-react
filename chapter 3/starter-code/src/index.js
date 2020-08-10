@@ -2,6 +2,14 @@ class Application extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      data: [
+        {
+          name: 'Nick',
+          age: 28
+        }
+      ]
+    }
   }
 
   render() {
@@ -29,10 +37,31 @@ class Application extends React.Component {
             </form>
           </div>
           <hr/>
+
+          <div className="row">
+            {
+              this.state.data.map(info => <Card info={info}/>)
+            }
+          </div>
         </div>
     )
   }
 }
+
+const Card = props =>
+<div className="col-md-6 col-lg-3">
+  <div className="card mb-3">
+    <div className="card-body">
+      <p className="card-title">
+        <span>Name: </span>{props.info.name}
+      </p>
+      <p className="card-text">
+        <span>Age: </span>{props.info.age}
+      </p>
+    </div>
+  </div>
+</div>
+
 ReactDOM.render(
     <Application/>,
     document.getElementById('root')
