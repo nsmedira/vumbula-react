@@ -30,18 +30,52 @@ class App extends Component {
         name: "Passion Fruits",
         price: "14"
       }
-    ]
+    ],
+    name: '',
+    price: ''
   };
 
   //TODO 9: Create an arrow function called handleInputChange which accepts event as its own argument.
-  //TODO 10: Handle the event changes in the name and price input elements when a user types in them.
+  handleInputChange = (event) => {
+
+    //TODO 10: Handle the event changes in the name and price input elements when a user types in them.
+    const target = event.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      [name]: value
+    })
+
+  }
+
   //TODO 14: Define an arrow function called addItem which accepts event as its only argument.
-  //TODO 15: Within it call preventDefault() on event and also add the functionality to add
-  //TODO the name and price to the items array within the component state.
+  addItem = (event) => {
+
+    //TODO 15: Within it call preventDefault() on event and also add the functionality to add
+    event.preventDefault()
+
+    //TODO the name and price to the items array within the component state.
+    const {name, price} = this.state
+    const items = this.state.items
+    const length = items.length
+    const id = length ? items[length -1].id + 1 : 1
+    this.setState({
+      items: [
+        ...items, Object.assign({}, {
+          id,
+          name,
+          price
+        })
+      ],
+      name: "",
+      price: ""
+    })
+  }
 
   render() {
-    //TODO 2: Destruct name and price from the state object and pass them as props to the AddItem component.
-    //TODO 11: Define an onChange prop on the AddItem component with a value of this.handleInputChange
+    //TODO 2: Destructure name and price from the state object and pass them as props to the AddItem component.
+    const {name, price} = this.state
+
     //TODO 16: Define an onSubmit prop on the AddItem with a value of this.addItem
     return <div>
       <Nav/>
@@ -50,7 +84,13 @@ class App extends Component {
 
       <div className="container pt-4">
 
-        <AddItem/>
+        {/* //TODO 11: Define an onChange prop on the AddItem component with a value of this.handleInputChange */}
+        <AddItem
+          name={name}
+          price={price}
+          onChange={this.handleInputChange}
+          onSubmit={this.addItem}
+        />
 
         <h1 className="display-4 my-4 text-center text-muted">Items</h1>
 

@@ -1,21 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+//TODO 7: Import PropTypes from the prop-types package.
+import PropTypes from 'prop-types'
 
 //TODO 3: Destruct the name and price within the function argument parentheses
-//TODO 4: Add name as a value to the item-name input element and also price to the price-input element
-//TODO 5: Add a name attribute to the item-name input element with a value of name
-//TODO 6: Add a name attribute to the price-input element with a value of price
 //TODO 12: Add onChange to the list of destructed elements in the function argument list.
-//TODO 14: Add an onChange attribute to both input elements with the value of the onChange prop.
 //TODO 17: Add an onSubmit to the list of destructed elements in the function argument list.
-//TODO 19: Add an onSubmit attribute to the form with the value of onSubmit.
-export const AddItem = () => (
+export const AddItem = ({name, price, onChange, onSubmit}) => (
     <div className="row justify-content-center">
-      <form className="form-inline">
+      <form className="form-inline" onSubmit={onSubmit}>
         <input
             type="text"
             className="form-control mb-2 mr-sm-2"
             placeholder="Item"
+
+            //TODO 4: Add name as a value to the item-name input element and also price to the price-input element
+            value={name}
+
+            //TODO 5: Add a name attribute to the item-name input element with a value of name
+            name="name"
+
+            //TODO 14: Add an onChange attribute to both input elements with the value of the onChange prop.
+            onChange={onChange}
+
         />
 
         <div className="input-group mb-2 mr-sm-2">
@@ -23,6 +30,16 @@ export const AddItem = () => (
               type="text"
               className="form-control"
               placeholder="Price"
+
+              //TODO 4: Add name as a value to the item-name input element and also price to the price-input element
+              price={price}
+
+              //TODO 6: Add a name attribute to the price-input element with a value of price
+              name="price"
+
+              //TODO 14: Add an onChange attribute to both input elements with the value of the onChange prop.
+              onChange={onChange}
+
           />
         </div>
         <button type="submit" className="btn btn-primary mb-2 pxy-4">Save</button>
@@ -30,7 +47,12 @@ export const AddItem = () => (
     </div>
 );
 
-//TODO 7: Import PropTypes from the prop-types package.
 //TODO 8: Add a proptypes object for name and price with a type of string and mark them as required.
 //TODO 13: Add onChange to the proptypes object as a required function.
 //TODO 18: Add onSubmit to the proptypes object as a required function.
+AddItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
+}
