@@ -72,12 +72,25 @@ class App extends Component {
   };
 
   //TODO 1: Define an arrow function and call it toggleItemEditing that accepts index as its only argument.
-  //TODO 2: Use the setState function to add the isEditing property to an item whose index matches the passed
-  //TODO in index.
+  toggleItemEditing = (index) => {
+
+    //TODO 2: Use the setState function to add the isEditing property to an item whose index matches the passed in index.
+    this.setState({
+      items: this.state.items.map((item, itemIndex) => {
+        if (itemIndex === index) {
+          return {
+            ...item,
+            isEditing: !item.isEditing
+          }
+        }
+        return item
+      })
+    })
+
+  }
+
   //TODO 10: Define an arrow function  with a name of handleItemUpdate which accepts an event and index as its only arguments
   //TODO 11: Implement the functionality to update the name and/or price of an item with the passed in index.
-  //TODO 3: Add toggleEdit as a prop to the ItemCard component and define an arrow function that calls
-  // TODO the toggleItemEditing function passing it the index
   //TODO 12: Add an onChange prop on the ItemCard component with this.handleItemUpdate as its value
   render() {
     const {name, price} = this.state;
@@ -105,6 +118,9 @@ class App extends Component {
                     index={index}
                     image={image}
                     item={item}
+
+                    //TODO 3: Add toggleEdit as a prop to the ItemCard component and define an arrow function that calls the toggleItemEditing function passing it the index
+                    toggleEdit={() => this.toggleItemEditing(index)}
                 />
             )
           }
