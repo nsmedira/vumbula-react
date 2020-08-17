@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const ItemCard = ({toggleEditing, item, image, onChange, index}) => (
+export const ItemCard = ({toggleEditing, item, image, onChange, index, onDelete}) => (
     <div className="col-md-6 col-lg-3">
       <div className="card mb-3">
         <img className="card-img-top" src={image}/>
@@ -50,7 +50,9 @@ export const ItemCard = ({toggleEditing, item, image, onChange, index}) => (
               </button>
               <button
                   type="button"
-                  className="btn btn-primary">
+                  className="btn btn-primary"
+                  onClick={onDelete}
+              >
                 Delete
               </button>
             </div>
@@ -68,4 +70,5 @@ ItemCard.propTypes = {
   }),
   toggleEditing: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };

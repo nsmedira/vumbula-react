@@ -113,9 +113,18 @@ class App extends Component {
   };
 
   //TODO 1: Define an arrow function with onDelete as its name and having index as its only argument.
-  //TODO 2: Write out the implementation of the onDelete function.
-  //TODO 3: Define an onDelete prop on the ItemCard component with a value being an arrow function that calls
-  // TODO: the above onDelete function passing it the index of the looped through item
+  onDelete = (index) => {
+
+    //TODO 2: Write out the implementation of the onDelete function.
+    this.setState({
+      items: [
+        ...this.state.items.slice(0, index),
+        ...this.state.items.slice(index+1)
+      ]
+    })
+
+  }
+
   render() {
     const {name, price} = this.state;
     return <div>
@@ -137,6 +146,8 @@ class App extends Component {
         <div className="row">
           {
             this.state.items.map((item, index) =>
+
+                // TODO 3: Define an onDelete prop on the ItemCard component with a value being an arrow function that calls the above onDelete function passing it the index of the looped through item
                 <ItemCard
                     key={item.id}
                     index={index}
@@ -144,6 +155,7 @@ class App extends Component {
                     item={item}
                     toggleEditing={() => this.toggleItemEditing(index)}
                     onChange={this.handleItemUpdate}
+                    onDelete={() => this.onDelete(index)}
                 />
             )
           }

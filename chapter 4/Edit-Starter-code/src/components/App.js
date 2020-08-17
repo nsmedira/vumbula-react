@@ -90,8 +90,25 @@ class App extends Component {
   }
 
   //TODO 10: Define an arrow function  with a name of handleItemUpdate which accepts an event and index as its only arguments
-  //TODO 11: Implement the functionality to update the name and/or price of an item with the passed in index.
-  //TODO 12: Add an onChange prop on the ItemCard component with this.handleItemUpdate as its value
+  handleItemUpdate = ( event, index ) => {
+
+    //TODO 11: Implement the functionality to update the name and/or price of an item with the passed in index.
+    const target = event.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      items: this.state.items.map((item, itemIndex) => {
+        if (itemIndex === index) {
+          return {
+            ...item,
+            [name]: value
+          }
+        }
+        return item
+      })
+    })
+  }
+
   render() {
     const {name, price} = this.state;
     return <div>
@@ -121,6 +138,9 @@ class App extends Component {
 
                     //TODO 3: Add toggleEdit as a prop to the ItemCard component and define an arrow function that calls the toggleItemEditing function passing it the index
                     toggleEdit={() => this.toggleItemEditing(index)}
+
+                    //TODO 12: Add an onChange prop on the ItemCard component with this.handleItemUpdate as its value
+                    onChange={this.handleItemUpdate}
                 />
             )
           }
